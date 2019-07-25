@@ -1,9 +1,11 @@
 package com.empmanagement;
+
 import java.util.List;
 import java.util.Scanner;
 
-import Impl.EmployeeDaoImpl;
-import dao.EmployeeDao;
+import com.empmanagement.dao.EmployeeDao;
+import com.empmanagement.dao.impl.EmployeeDaoImpl;
+import com.empmanagement.domain.Employee;
 
 public class Main {
 	static Scanner sc = new Scanner(System.in);

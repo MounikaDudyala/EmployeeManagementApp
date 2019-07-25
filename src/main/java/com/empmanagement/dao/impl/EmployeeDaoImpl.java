@@ -1,7 +1,6 @@
-package Impl;
+package com.empmanagement.dao.impl;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,18 +8,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.empmanagement.Employee;
+import com.empmanagement.dao.AbstractDBConnection;
+import com.empmanagement.dao.EmployeeDao;
+import com.empmanagement.domain.Employee;
 
-import dao.EmployeeDao;
-
-public class EmployeeDaoImpl implements EmployeeDao {
-	public Connection getConnection() throws SQLException {
-		String url = "jdbc:mysql://localhost:3306/database2";
-		String user = "root";
-		String password = "root";
-		Connection conn = DriverManager.getConnection(url, user, password);
-		return conn;
-	}
+public class EmployeeDaoImpl extends AbstractDBConnection implements EmployeeDao{
 
 	public boolean createEmployee(Employee emp) {
 		try {
