@@ -16,6 +16,7 @@ public class EmployeeDaoImpl extends AbstractDBConnection implements EmployeeDao
 
 	public boolean createEmployee(Employee emp) {
 		try {
+			Class.forName("com.mysql.jdbc.Driver"); 
 			Connection conn = getConnection();
 			PreparedStatement pstmt = conn.prepareStatement("insert into Employee values(?,?,?,?)");
 			pstmt.setString(1, emp.getEmployeeId());
@@ -28,7 +29,7 @@ public class EmployeeDaoImpl extends AbstractDBConnection implements EmployeeDao
 			if (i == 0)
 				return false;
 		} catch (SQLException e) {
-			System.out.println("message");
+			System.out.println("SQLException caught: " + e.getMessage());
 		} catch (Exception e) {
 
 			System.out.println("message");
@@ -38,6 +39,7 @@ public class EmployeeDaoImpl extends AbstractDBConnection implements EmployeeDao
 
 	public Employee fetchEmployee(String empId) {
 		try {
+			  Class.forName("com.mysql.jdbc.Driver"); 
 			Connection conn = getConnection();
 			PreparedStatement pstmt = conn.prepareStatement("select * from Employee where empId=?");
 			pstmt.setString(1, empId);
@@ -52,13 +54,18 @@ public class EmployeeDaoImpl extends AbstractDBConnection implements EmployeeDao
 
 			return emp;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("SQLException caught: " + e.getMessage());
+
+		}catch (Exception e) {
+
+			System.out.println("message");
 		}
 		return null;
 	}
 
 	public List<Employee> fetchEmployees() {
 		try {
+			Class.forName("com.mysql.jdbc.Driver"); 
 			Connection conn = getConnection();
 			Statement st = conn.createStatement();
 			String query = "select * from Employee";
@@ -76,7 +83,11 @@ public class EmployeeDaoImpl extends AbstractDBConnection implements EmployeeDao
 
 			return list;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("SQLException caught: " + e.getMessage());
+
+		}catch (Exception e) {
+
+			System.out.println("message");
 		}
 		return null;
 	}
