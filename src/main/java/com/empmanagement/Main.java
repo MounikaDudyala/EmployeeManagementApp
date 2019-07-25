@@ -1,12 +1,13 @@
 package com.empmanagement;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
+
+import Impl.EmployeeDaoImpl;
+import dao.EmployeeDao;
 
 public class Main {
 	static Scanner sc = new Scanner(System.in);
-	static EmployeeDAO empDAO = new EmployeeDAO();
+	static EmployeeDao empDAO = new EmployeeDaoImpl();
 
 	public static void main(String args[]) {
 		System.out.println("1.CreateEmployee\t2.FetchEmployee\t3.FetchEmployees");
@@ -27,36 +28,27 @@ public class Main {
 		String lastName = sc.next();
 		String managerId = sc.next();
 		Employee emp = new Employee(empId, firstName, lastName, managerId);
-		empDAO.createEmployee(emp);
+		boolean response=empDAO.createEmployee(emp);
+		if(response)
+			System.out.println("Employee created");
+		else
+			System.out.println("Employee is not created");
 	}
 
 	public static void fetchEmployee() {
 		System.out.println("Enter EmployeeId");
 		String empId = sc.next();
-		ResultSet rs = empDAO.fetchEmployee(empId);
-		try {
-			while (rs.next()) {
-				System.out.println("empId:" + rs.getString(1) + " FirstName:" + rs.getString(2) + " LastName:"
-						+ rs.getString(3) + " ManagerId:" + rs.getString(4));
-			}
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		}
+		Employee emp = empDAO.fetchEmployee(empId);
+		System.out.println(emp);
 
 	}
 
 	public static void fetchEmployees() {
 
-		ResultSet rs = empDAO.fetchEmployees();
-		try {
-			while (rs.next())
-				System.out.println("empId:" + rs.getString(1) + " FirstName:" + rs.getString(2) + " LastName:"
-						+ rs.getString(3) + " ManagerId:" + rs.getString(4));
-
-		} catch (SQLException e) {
-
-			e.printStackTrace();
+		List<Employee> list = empDAO.fetchEmployees();
+		for(Employee emp:list)
+		{
+			System.out.println(emp);
 		}
 	}
 }
