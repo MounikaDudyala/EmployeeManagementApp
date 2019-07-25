@@ -1,12 +1,16 @@
 package com.empmanagement;
 
+import com.empmanagement.dao.EmployeeDao;
+import com.empmanagement.dao.impl.EmployeeDaoImpl;
+import com.empmanagement.domain.Employee;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main {
 	static Scanner sc = new Scanner(System.in);
-	static EmployeeDAO empDAO = new EmployeeDAO();
+	static EmployeeDao empDAO = new EmployeeDaoImpl();
 
 	public static void main(String args[]) {
 		System.out.println("1.CreateEmployee\t2.FetchEmployee\t3.FetchEmployees");
