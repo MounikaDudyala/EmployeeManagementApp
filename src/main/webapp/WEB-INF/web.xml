@@ -10,11 +10,11 @@
 	</servlet>
 	<servlet>
 		<servlet-name>CreateEmployee</servlet-name>
-		<servlet-class>com.empmanagement.CreateEmployee</servlet-class>
+		<servlet-class>com.empmanagement.CreateEmployeeController</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>Fetch</servlet-name>
-		<servlet-class>com.empmanagement.FetchEmployee</servlet-class>
+		<servlet-class>com.empmanagement.FetchEmployeeController</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Create</servlet-name>

@@ -15,7 +15,7 @@ import com.empmanagement.dao.EmployeeDao;
 import com.empmanagement.dao.impl.EmployeeDaoImpl;
 import com.empmanagement.domain.Employee;
 
-public class FetchEmployee extends HttpServlet{
+public class FetchEmployeeController extends HttpServlet{
 	public void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException
 	{
     	 EmployeeDao empDao=new EmployeeDaoImpl();

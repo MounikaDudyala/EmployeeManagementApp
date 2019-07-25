@@ -13,7 +13,7 @@ import com.empmanagement.dao.EmployeeDao;
 import com.empmanagement.dao.impl.EmployeeDaoImpl;
 import com.empmanagement.domain.Employee;
 
-public class CreateEmployee extends HttpServlet {
+public class CreateEmployeeController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
