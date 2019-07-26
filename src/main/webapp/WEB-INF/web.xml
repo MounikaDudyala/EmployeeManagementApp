@@ -5,10 +5,6 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
 	<servlet>
-		<servlet-name>Create</servlet-name>
-		<servlet-class>com.empmanagement.CreateEmployee</servlet-class>
-	</servlet>
-	<servlet>
 		<servlet-name>CreateEmployee</servlet-name>
 		<servlet-class>com.empmanagement.CreateEmployeeController</servlet-class>
 	</servlet>
@@ -16,10 +12,6 @@
 		<servlet-name>Fetch</servlet-name>
 		<servlet-class>com.empmanagement.FetchEmployeeController</servlet-class>
 	</servlet>
-	<servlet-mapping>
-		<servlet-name>Create</servlet-name>
-		<url-pattern>/create</url-pattern>
-	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>CreateEmployee</servlet-name>
 		<url-pattern>/createEmployee</url-pattern>
