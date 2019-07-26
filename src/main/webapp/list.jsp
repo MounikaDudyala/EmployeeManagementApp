@@ -21,7 +21,7 @@
   %>
   </table>
   <br>
- <a href="create.jsp">NEW</a>
+ <a href="/EmployeeManagement/create">NEW</a>
  
 </body>
 </html>

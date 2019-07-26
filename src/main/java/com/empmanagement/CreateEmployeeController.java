@@ -34,7 +34,7 @@ public class CreateEmployeeController extends HttpServlet {
 				response.sendRedirect("/EmployeeManagement/list");
 			} else {
 
-				response.sendRedirect("/EmployeeManagement/create.jsp");
+				response.sendRedirect("/EmployeeManagement/create");
 
 			}
 
