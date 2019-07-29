@@ -8,4 +8,6 @@ public interface EmployeeDao {
     boolean createEmployee(Employee emp);
     Employee fetchEmployee(String empId);
     List<Employee> fetchEmployees();
+	boolean deleteEmployee(String empId);
+	Employee editEmployee(String empId);
 }

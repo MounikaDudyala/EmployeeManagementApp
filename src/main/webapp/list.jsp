@@ -10,18 +10,32 @@
 <title>Insert title here</title>
 </head>
 <body>
+<a href="/EmployeeManagement/create">NEW</a>
 <table>
-  <% ArrayList<Employee> list= (ArrayList<Employee>)request.getAttribute("list"); 
-      for(Employee emp:list)
-      {
-    	    out.print("<br/>"+emp.getEmployeeId()+" "+emp.getFirstName()+" "+emp.getLastName()+" "+emp.getManagerId());
-    	    
-      } 
-      
-  %>
-  </table>
-  <br>
- <a href="/EmployeeManagement/create">NEW</a>
- 
+  <tr>
+  <th>EmpID</th>
+  <th>FirstName</th>
+  <th>LastName</th>
+  <th>ManagerID</th>
+</tr>
+ <% ArrayList<Employee> list= (ArrayList<Employee>)request.getAttribute("list"); 
+ for(Employee emp:list)
+ {%>
+ <tr>
+     <td><%out.print(emp.getEmployeeId());%></td>
+     <td><%out.print(emp.getFirstName());%></td>
+     <td><%out.print(emp.getLastName());%></td>
+     <td><%out.print(emp.getManagerId());%></td>
+     <td>
+     <%-- <form action="/EmployeeManagement/delete" method="post">
+    <button type="submit" name="empId" value="<%emp.getEmployeeId();%>" >delete</button> --%>
+    <a href='/EmployeeManagement/delete'?empId=<% emp.getEmployeeId();%>>delete</a>
+</form>
+     <%-- <a href="<c:url value="/EmployeeManagement/delete">
+        <c:param name="empId" value="<%emp.getEmployeeId(); %>"/>
+       </c:url>">Delete </a> --%></td>
+   </tr>
+     <%} %>
+ </table>
 </body>
 </html>

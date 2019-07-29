@@ -7,16 +7,18 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import com.empmanagement.dao.AbstractDBConnection;
 import com.empmanagement.dao.EmployeeDao;
 import com.empmanagement.domain.Employee;
 
-public class EmployeeDaoImpl extends AbstractDBConnection implements EmployeeDao{
+public class EmployeeDaoImpl extends AbstractDBConnection implements EmployeeDao {
+	Scanner sc = new Scanner(System.in);
 
 	public boolean createEmployee(Employee emp) {
 		try {
-			Class.forName("com.mysql.jdbc.Driver"); 
+			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = getConnection();
 			PreparedStatement pstmt = conn.prepareStatement("insert into Employee values(?,?,?,?)");
 			pstmt.setString(1, emp.getEmployeeId());
@@ -39,7 +41,7 @@ public class EmployeeDaoImpl extends AbstractDBConnection implements EmployeeDao
 
 	public Employee fetchEmployee(String empId) {
 		try {
-			  Class.forName("com.mysql.jdbc.Driver"); 
+			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = getConnection();
 			PreparedStatement pstmt = conn.prepareStatement("select * from Employee where empId=?");
 			pstmt.setString(1, empId);
@@ -56,7 +58,7 @@ public class EmployeeDaoImpl extends AbstractDBConnection implements EmployeeDao
 		} catch (SQLException e) {
 			System.out.println("SQLException caught: " + e.getMessage());
 
-		}catch (Exception e) {
+		} catch (Exception e) {
 
 			System.out.println("message");
 		}
@@ -65,7 +67,7 @@ public class EmployeeDaoImpl extends AbstractDBConnection implements EmployeeDao
 
 	public List<Employee> fetchEmployees() {
 		try {
-			Class.forName("com.mysql.jdbc.Driver"); 
+			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = getConnection();
 			Statement st = conn.createStatement();
 			String query = "select * from Employee";
@@ -85,7 +87,60 @@ public class EmployeeDaoImpl extends AbstractDBConnection implements EmployeeDao
 		} catch (SQLException e) {
 			System.out.println("SQLException caught: " + e.getMessage());
 
-		}catch (Exception e) {
+		} catch (Exception e) {
+
+			System.out.println("message");
+		}
+		return null;
+	}
+
+	public boolean deleteEmployee(String empId) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn = getConnection();
+			PreparedStatement pstmt = conn.prepareStatement("delete from Employee where empId=?");
+			pstmt.setString(1, empId);
+			int i = pstmt.executeUpdate();
+			if (i == 1)
+				return true;
+			if (i == 0)
+				return false;
+
+		} catch (SQLException e) {
+			System.out.println("SQLException caught: " + e.getMessage());
+		} catch (Exception e) {
+
+			System.out.println("message");
+		}
+		return false;
+	}
+
+	public Employee editEmployee(String empId) {
+		System.out.println("enter new firstName");
+		String firstName = sc.next();
+		System.out.println("enter new LastName");
+		String lastName = sc.next();
+		System.out.println("enter new ManagerId");
+		String managerId = sc.next();
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn = getConnection();
+			PreparedStatement pstmt = conn.prepareStatement("update Employee set FirstName=?,LastName=?,ManagerId=? where EmpId=?");
+			pstmt.setString(1, firstName);
+			pstmt.setString(2, lastName);
+			pstmt.setString(3, managerId);
+			pstmt.setString(4, empId);
+			int i = pstmt.executeUpdate();
+			if (i == 1) {
+				Employee emp = fetchEmployee(empId);
+				return emp;
+
+			} else
+				return null;
+
+		} catch (SQLException e) {
+			System.out.println("SQLException caught: " + e.getMessage());
+		} catch (Exception e) {
 
 			System.out.println("message");
 		}

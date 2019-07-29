@@ -5,28 +5,35 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
   <servlet>
-		<servlet-name>Create</servlet-name>
-		<servlet-class>com.empmanagement.CreateEmployee</servlet-class>
+		<servlet-name>list</servlet-name>
+		<servlet-class>com.empmanagement.EmployeeController</servlet-class>
 	</servlet>
-	<servlet>
-		<servlet-name>CreateEmployee</servlet-name>
-		<servlet-class>com.empmanagement.CreateEmployeeController</servlet-class>
+	 <servlet>
+		<servlet-name>create</servlet-name>
+		<servlet-class>com.empmanagement.EmployeeController</servlet-class>
 	</servlet>
-	<servlet>
-		<servlet-name>Fetch</servlet-name>
-		<servlet-class>com.empmanagement.FetchEmployeeController</servlet-class>
+	 <servlet>
+		<servlet-name>createEmployee</servlet-name>
+		<servlet-class>com.empmanagement.EmployeeController</servlet-class>
+	</servlet>
+	 <servlet>
+		<servlet-name>deleteEmployee</servlet-name>
+		<servlet-class>com.empmanagement.EmployeeController</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>Create</servlet-name>
+		<servlet-name>list</servlet-name>
+		<url-pattern>/list</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>create</servlet-name>
 		<url-pattern>/create</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>CreateEmployee</servlet-name>
+		<servlet-name>createEmployee</servlet-name>
 		<url-pattern>/createEmployee</url-pattern>
 	</servlet-mapping>
-	
 	<servlet-mapping>
-		<servlet-name>Fetch</servlet-name>
-		<url-pattern>/list</url-pattern>
+		<servlet-name>deleteEmployee</servlet-name>
+		<url-pattern>/delete</url-pattern>
 	</servlet-mapping>
 </web-app>

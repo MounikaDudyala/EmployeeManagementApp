@@ -12,7 +12,7 @@ public class Main {
 	static EmployeeDao empDAO = new EmployeeDaoImpl();
 
 	public static void main(String args[]) {
-		System.out.println("1.CreateEmployee\t2.FetchEmployee\t3.FetchEmployees");
+		System.out.println("1.CreateEmployee\t2.FetchEmployee\t3.FetchEmployees\t4.DeleteEmployee\t5.EditEmployee");
 		int choice = sc.nextInt();
 		switch (choice) {
 		case 1:createEmployee();
@@ -20,6 +20,11 @@ public class Main {
 		case 2:fetchEmployee();
 		break;
 		case 3:fetchEmployees();
+		break;
+		case 4:deleteEmployee();
+		break;
+		case 5:editEmployee();
+		 
 		}
 	}
 
@@ -52,5 +57,23 @@ public class Main {
 		{
 			System.out.println(emp);
 		}
+	}
+	public static void deleteEmployee()
+	{
+		System.out.println("Enter EmployeeId");
+		String empId = sc.next();
+		boolean response = empDAO.deleteEmployee(empId);
+		if(response)
+			System.out.println("Employee deleted");
+		else
+			System.out.println("Employee not found");
+			 
+	}
+	public static void editEmployee()
+	{ System.out.println("Enter EmployeeId");
+	   String empId = sc.next();
+	   Employee emp = empDAO.editEmployee(empId);
+	    System.out.println(emp);
+		
 	}
 }

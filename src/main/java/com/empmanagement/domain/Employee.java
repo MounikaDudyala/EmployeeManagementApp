@@ -50,6 +50,6 @@ public class Employee {
 	}
 	public String toString()
 	{
-		return "Id:"+empId+" FirstName:"+firstName+" LastName:"+lastName;
+		return "Id:"+empId+" FirstName:"+firstName+" LastName:"+lastName+" ManagerId:"+managerId;
 	}
 }
