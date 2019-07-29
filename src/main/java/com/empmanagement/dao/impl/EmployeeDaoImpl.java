@@ -125,7 +125,8 @@ public class EmployeeDaoImpl extends AbstractDBConnection implements EmployeeDao
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = getConnection();
-			PreparedStatement pstmt = conn.prepareStatement("update Employee set FirstName=?,LastName=?,ManagerId=? where EmpId=?");
+			PreparedStatement pstmt = conn
+					.prepareStatement("update Employee set FirstName=?,LastName=?,ManagerId=? where EmpId=?");
 			pstmt.setString(1, firstName);
 			pstmt.setString(2, lastName);
 			pstmt.setString(3, managerId);

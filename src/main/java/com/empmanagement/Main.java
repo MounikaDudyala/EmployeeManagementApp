@@ -15,16 +15,21 @@ public class Main {
 		System.out.println("1.CreateEmployee\t2.FetchEmployee\t3.FetchEmployees\t4.DeleteEmployee\t5.EditEmployee");
 		int choice = sc.nextInt();
 		switch (choice) {
-		case 1:createEmployee();
-		  break;
-		case 2:fetchEmployee();
-		break;
-		case 3:fetchEmployees();
-		break;
-		case 4:deleteEmployee();
-		break;
-		case 5:editEmployee();
-		 
+		case 1:
+			createEmployee();
+			break;
+		case 2:
+			fetchEmployee();
+			break;
+		case 3:
+			fetchEmployees();
+			break;
+		case 4:
+			deleteEmployee();
+			break;
+		case 5:
+			editEmployee();
+
 		}
 	}
 
@@ -35,8 +40,8 @@ public class Main {
 		String lastName = sc.next();
 		String managerId = sc.next();
 		Employee emp = new Employee(empId, firstName, lastName, managerId);
-		boolean response=empDAO.createEmployee(emp);
-		if(response)
+		boolean response = empDAO.createEmployee(emp);
+		if (response)
 			System.out.println("Employee created");
 		else
 			System.out.println("Employee is not created");
@@ -53,27 +58,27 @@ public class Main {
 	public static void fetchEmployees() {
 
 		List<Employee> list = empDAO.fetchEmployees();
-		for(Employee emp:list)
-		{
+		for (Employee emp : list) {
 			System.out.println(emp);
 		}
 	}
-	public static void deleteEmployee()
-	{
+
+	public static void deleteEmployee() {
 		System.out.println("Enter EmployeeId");
 		String empId = sc.next();
 		boolean response = empDAO.deleteEmployee(empId);
-		if(response)
+		if (response)
 			System.out.println("Employee deleted");
 		else
 			System.out.println("Employee not found");
-			 
+
 	}
-	public static void editEmployee()
-	{ System.out.println("Enter EmployeeId");
-	   String empId = sc.next();
-	   Employee emp = empDAO.editEmployee(empId);
-	    System.out.println(emp);
-		
+
+	public static void editEmployee() {
+		System.out.println("Enter EmployeeId");
+		String empId = sc.next();
+		Employee emp = empDAO.editEmployee(empId);
+		System.out.println(emp);
+
 	}
 }

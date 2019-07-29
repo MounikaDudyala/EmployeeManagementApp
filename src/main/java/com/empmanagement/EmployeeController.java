@@ -25,8 +25,7 @@ public class EmployeeController extends HttpServlet {
 		}
 		if (path.equals(list)) {
 			fetchEmployee(request, response);
-		}
-		else if (path.contentEquals(delete)) {
+		} else if (path.contentEquals(delete)) {
 			deleteEmployee(request, response);
 		}
 	}
@@ -45,7 +44,7 @@ public class EmployeeController extends HttpServlet {
 		String path = request.getServletPath();
 		if (path.contentEquals(createEmployee)) {
 			createEmployee(request, response);
-		} 
+		}
 	}
 
 	public void create(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -79,14 +78,16 @@ public class EmployeeController extends HttpServlet {
 	}
 
 	public void deleteEmployee(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		
-		  String Id=request.getParameter("empId"); if(Id==null)
-			 System.out.println("employee not found");
-		  EmployeeDao empDao=new EmployeeDaoImpl(); boolean
-		  bool=empDao.deleteEmployee(Id); if (bool) {
-		  response.sendRedirect("/EmployeeManagement/list"); } else
-		  System.out.println("Employee is not deleted");
-		 
-	}
-	}
 
+		String Id = request.getParameter("empId");
+		if (Id == null)
+			System.out.println("employee not found");
+		EmployeeDao empDao = new EmployeeDaoImpl();
+		boolean bool = empDao.deleteEmployee(Id);
+		if (bool) {
+			response.sendRedirect("/EmployeeManagement/list");
+		} else
+			System.out.println("Employee is not deleted");
+
+	}
+}
