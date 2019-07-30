@@ -20,6 +20,7 @@ public class EmployeeController extends HttpServlet {
 		String create = "/create";
 		String delete = "/delete";
 		String path = request.getServletPath();
+
 		if (path.contentEquals(create)) {
 			create(request, response);
 		}
@@ -69,16 +70,13 @@ public class EmployeeController extends HttpServlet {
 			if (bool) {
 				response.sendRedirect("/EmployeeManagement/list");
 			} else {
-
 				response.sendRedirect("/EmployeeManagement/create");
-
 			}
 
 		}
 	}
 
 	public void deleteEmployee(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
 		String Id = request.getParameter("empId");
 		if (Id == null)
 			System.out.println("employee not found");
@@ -86,6 +84,7 @@ public class EmployeeController extends HttpServlet {
 		boolean bool = empDao.deleteEmployee(Id);
 		if (bool) {
 			response.sendRedirect("/EmployeeManagement/list");
+			System.out.println("Employee deleted");
 		} else
 			System.out.println("Employee is not deleted");
 

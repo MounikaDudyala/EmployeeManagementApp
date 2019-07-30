@@ -27,14 +27,12 @@
      <td><%out.print(emp.getLastName());%></td>
      <td><%out.print(emp.getManagerId());%></td>
      <td>
-     <%-- <form action="/EmployeeManagement/delete" method="post">
-    <button type="submit" name="empId" value="<%emp.getEmployeeId();%>" >delete</button> --%>
-    <a href='/EmployeeManagement/delete'?empId=<% emp.getEmployeeId();%>>delete</a>
-</form>
-     <%-- <a href="<c:url value="/EmployeeManagement/delete">
-        <c:param name="empId" value="<%emp.getEmployeeId(); %>"/>
-       </c:url>">Delete </a> --%></td>
-   </tr>
+        <FORM ACTION="/EmployeeManagement/delete" METHOD="GET">
+            <INPUT TYPE="HIDDEN" NAME="empId" VALUE=<%=emp.getEmployeeId()%>>
+            <INPUT TYPE="SUBMIT" VALUE="Delete">
+        </FORM>
+     </td>
+ </tr>
      <%} %>
  </table>
 </body>
