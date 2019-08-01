@@ -115,29 +115,23 @@ public class EmployeeDaoImpl extends AbstractDBConnection implements EmployeeDao
 		return false;
 	}
 
-	public Employee editEmployee(String empId) {
-		System.out.println("enter new firstName");
-		String firstName = sc.next();
-		System.out.println("enter new LastName");
-		String lastName = sc.next();
-		System.out.println("enter new ManagerId");
-		String managerId = sc.next();
+	public boolean editEmployee(Employee emp) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = getConnection();
-			PreparedStatement pstmt = conn
-					.prepareStatement("update Employee set FirstName=?,LastName=?,ManagerId=? where EmpId=?");
-			pstmt.setString(1, firstName);
-			pstmt.setString(2, lastName);
-			pstmt.setString(3, managerId);
-			pstmt.setString(4, empId);
+			PreparedStatement pstmt = conn.prepareStatement("update Employee set empId=?,FirstName=?,LastName=?,ManagerId=? where EmpId=?");
+			pstmt.setString(1, emp.getEmployeeId());
+			pstmt.setString(2, emp.getFirstName());
+			pstmt.setString(3, emp.getLastName());
+			pstmt.setString(4, emp.getManagerId());
+			pstmt.setString(5, emp.getEmployeeId());
 			int i = pstmt.executeUpdate();
-			if (i == 1) {
-				Employee emp = fetchEmployee(empId);
-				return emp;
+			if (i ==0) {
+				return false;
+				
 
 			} else
-				return null;
+				return true;
 
 		} catch (SQLException e) {
 			System.out.println("SQLException caught: " + e.getMessage());
@@ -145,7 +139,7 @@ public class EmployeeDaoImpl extends AbstractDBConnection implements EmployeeDao
 
 			System.out.println("message");
 		}
-		return null;
+		return false;
 	}
 
 }

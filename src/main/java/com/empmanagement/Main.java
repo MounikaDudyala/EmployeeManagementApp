@@ -27,8 +27,7 @@ public class Main {
 		case 4:
 			deleteEmployee();
 			break;
-		case 5:
-			editEmployee();
+		
 
 		}
 	}
@@ -74,11 +73,7 @@ public class Main {
 
 	}
 
-	public static void editEmployee() {
-		System.out.println("Enter EmployeeId");
-		String empId = sc.next();
-		Employee emp = empDAO.editEmployee(empId);
-		System.out.println(emp);
+	
 
 	}
-}
+

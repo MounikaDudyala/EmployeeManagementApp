@@ -17,17 +17,30 @@ public class EmployeeController extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String list = "/list";
-		String create = "/create";
+		String create = "/new";
 		String delete = "/delete";
 		String path = request.getServletPath();
 
 		if (path.contentEquals(create)) {
-			create(request, response);
+			newForm(request, response);
 		}
 		if (path.equals(list)) {
 			fetchEmployee(request, response);
 		} else if (path.contentEquals(delete)) {
 			deleteEmployee(request, response);
+		}
+	}
+
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String createEmployee = "/create";
+		String editEmployee="/edit";
+		String path = request.getServletPath();
+		if (path.contentEquals(createEmployee)) {
+			createEmployee(request, response);
+		}
+		if(path.contentEquals(editEmployee))
+		{
+			editEmployee(request,response);
 		}
 	}
 
@@ -40,15 +53,7 @@ public class EmployeeController extends HttpServlet {
 		req.forward(request, response);
 	}
 
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String createEmployee = "/createEmployee";
-		String path = request.getServletPath();
-		if (path.contentEquals(createEmployee)) {
-			createEmployee(request, response);
-		}
-	}
-
-	public void create(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void newForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("create.jsp");
 		rd.forward(request, response);
 	}
@@ -57,14 +62,13 @@ public class EmployeeController extends HttpServlet {
 			throws ServletException, IOException {
 		String empId = request.getParameter("empId");
 		String managerId = request.getParameter("managerId");
-		String first_name = request.getParameter("first_name");
-		String last_name = request.getParameter("last_name");
-
-		if (first_name.isEmpty() || last_name.isEmpty() || empId.isEmpty() || managerId.isEmpty()) {
+		String firstName = request.getParameter("firstName");
+		String lastName = request.getParameter("lastName");
+		if (firstName.isEmpty() || lastName.isEmpty() || empId.isEmpty() || managerId.isEmpty()) {
 			RequestDispatcher req = request.getRequestDispatcher("create.jsp");
 			req.forward(request, response);
 		} else {
-			Employee emp = new Employee(empId, first_name, last_name, managerId);
+			Employee emp = new Employee(empId, firstName, lastName, managerId);
 			EmployeeDao empDao = new EmployeeDaoImpl();
 			boolean bool = empDao.createEmployee(emp);
 			if (bool) {
@@ -84,9 +88,31 @@ public class EmployeeController extends HttpServlet {
 		boolean bool = empDao.deleteEmployee(Id);
 		if (bool) {
 			response.sendRedirect("/EmployeeManagement/list");
-			System.out.println("Employee deleted");
+			System.out.println("Employee deleted:" + Id);
 		} else
 			System.out.println("Employee is not deleted");
 
 	}
+	public void editEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
+		String empId = request.getParameter("empId");
+		String managerId = request.getParameter("managerId");
+		String firstName = request.getParameter("firstName");
+		String lastName = request.getParameter("lastName");
+		if (firstName.isEmpty() || lastName.isEmpty() || empId.isEmpty() || managerId.isEmpty()) {
+			RequestDispatcher req = request.getRequestDispatcher("create.jsp");
+			req.forward(request, response);
+		}
+			else {
+				Employee emp = new Employee(empId, firstName, lastName, managerId);
+			EmployeeDao empDao = new EmployeeDaoImpl();
+			boolean bool = empDao.editEmployee(emp);
+			if (bool) {
+				response.sendRedirect("/EmployeeManagement/list");
+			} else {
+				response.sendRedirect("/EmployeeManagement/new");
+			}	
+	}
+		}
 }
+

@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="/EmployeeManagement/create">NEW</a>
+<a href="/EmployeeManagement/new">NEW</a>
 <table>
   <tr>
   <th>EmpID</th>
@@ -27,11 +27,11 @@
      <td><%out.print(emp.getLastName());%></td>
      <td><%out.print(emp.getManagerId());%></td>
      <td>
-        <FORM ACTION="/EmployeeManagement/delete" METHOD="GET">
-            <INPUT TYPE="HIDDEN" NAME="empId" VALUE=<%=emp.getEmployeeId()%>>
-            <INPUT TYPE="SUBMIT" VALUE="Delete">
-        </FORM>
+     <a href="/EmployeeManagement/delete?empId=<%=emp.getEmployeeId()%>">delete</a>
      </td>
+     <td>
+     <a href="create.jsp?empId=<%=emp.getEmployeeId()%>">edit</a>       
+      </td>
  </tr>
      <%} %>
  </table>
