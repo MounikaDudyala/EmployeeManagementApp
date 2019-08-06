@@ -9,5 +9,5 @@ public interface EmployeeDao {
     Employee fetchEmployee(String empId);
     List<Employee> fetchEmployees();
 	boolean deleteEmployee(String empId);
-	boolean editEmployee(Employee emp);
+	boolean updateEmployee(Employee emp);
 }

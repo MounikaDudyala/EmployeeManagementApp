@@ -115,7 +115,7 @@ public class EmployeeDaoImpl extends AbstractDBConnection implements EmployeeDao
 		return false;
 	}
 
-	public boolean editEmployee(Employee emp) {
+	public boolean updateEmployee(Employee emp) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = getConnection();

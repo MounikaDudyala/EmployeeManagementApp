@@ -12,6 +12,9 @@
 <body>
 <a href="/EmployeeManagement/new">NEW</a>
 <table>
+<c:set var="success_message" value='${requestScope["message"]}'></c:set>
+<tr><td><c:out value="${message}"></c:out></td></tr>
+<tr><td></td></tr>
   <tr>
   <th>EmpID</th>
   <th>FirstName</th>
@@ -22,7 +25,7 @@
  for(Employee emp:list)
  {%>
  <tr>
-     <td><%out.print(emp.getEmployeeId());%></td>
+     <td><%  out.print(emp.getEmployeeId());%></td>
      <td><%out.print(emp.getFirstName());%></td>
      <td><%out.print(emp.getLastName());%></td>
      <td><%out.print(emp.getManagerId());%></td>
@@ -30,7 +33,7 @@
      <a href="/EmployeeManagement/delete?empId=<%=emp.getEmployeeId()%>">delete</a>
      </td>
      <td>
-     <a href="create.jsp?empId=<%=emp.getEmployeeId()%>">edit</a>       
+     <a href="/EmployeeManagement/edit?empId=<%=emp.getEmployeeId()%>">edit</a>       
       </td>
  </tr>
      <%} %>
